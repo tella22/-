@@ -1,0 +1,88 @@
+import java.util.Scanner;
+public class TryTragaperras {
+
+	public static void main(String[] args) {
+
+		String[] vecCombinaciones = {"$", "@", "#", "%", ">", "<"};
+		String[] vecGanadores = {"$$$", "$@@", "$##", "@@@", "@##", "@$$", "###", "%%%", "<<<", ">>>", "$@%"};
+		int dinero, contaDinero=0, numeroAleatorio, k, tirar=0;
+		boolean seguir;
+		String seguirJugando;
+		String salida="";
+
+		Scanner teclado = new Scanner(System.in);
+
+		do{
+			System.out.println("introduce la cantidad de € que desea jugar (entre 1 y 9€)");
+			dinero=teclado.nextInt();
+			System.out.println("Has introducido "+dinero+"€, puedes hacer "+dinero+" tiradas");
+		}while(dinero < 1 || dinero > 9);
+
+		contaDinero+=dinero;
+		seguir=true;
+
+		System.out.println("1 para tirar, 0 para salir");
+		tirar=teclado.nextInt();
+		if (tirar==1) {
+
+			while(seguir!=false || contaDinero>0){
+				salida="";
+				for(k=0;k<3;k++) {
+
+					numeroAleatorio=(int)Math.floor(Math.random()*11);
+
+					switch (numeroAleatorio) {
+					case 1:
+						salida+="$";
+						break;
+					case 2:
+						salida+="$";
+						break;
+					case 3:
+						salida+="$";
+						break;
+					case 4:
+						salida+="@";
+						break;
+					case 5:
+						salida+="@";
+						break;
+					case 6:
+						salida+="@";
+						break;
+					case 7:
+						salida+="#";
+						break;
+					case 8:
+						salida+="%";
+						break;
+					case 9:
+						salida+="<";
+						break;
+					case 10:
+						salida+=">";
+						break;
+					}
+				}//for tirada
+				contaDinero--;
+				System.out.println(salida);
+				for(k=0;k<vecGanadores.length;k++) {
+					if(salida.equals(vecGanadores[k])) {
+						System.out.println("la combinacion es ganadora");
+					}
+				}
+				System.out.println("¿seguir jugando?");
+				seguirJugando=teclado.nextLine();
+				if(seguirJugando.equals("no")||seguirJugando.equals("NO")||seguirJugando.equals("nO")||seguirJugando.equals("No")) {
+					seguir=false;
+				}else if(contaDinero==0){
+					seguir=false;
+				}
+			}//while tengas dinero o no
+		}else if(tirar==0) {
+			System.out.println("Te vas con tu dinero "+contaDinero+"€");
+		}
+
+	}
+
+}

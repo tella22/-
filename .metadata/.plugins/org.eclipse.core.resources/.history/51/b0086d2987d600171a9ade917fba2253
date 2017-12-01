@@ -1,0 +1,73 @@
+import java.util.Scanner;
+public class TryTragaperras {
+
+	public static void main(String[] args) {
+
+		String[] vecCombinaciones = {"$", "@", "#", "%", ">", "<"};
+		String[] vecGanadores = {"$$$", "$@@", "$##", "@@@", "@##", "@$$", "###", "%%%", "<<<", ">>>", "$@%"};
+		int dinero, contaDinero=0, numeroAleatorio, k, tirar=0;
+		boolean seguir;
+		String seguirJugando;
+		String salida="";
+
+		Scanner teclado = new Scanner(System.in);
+
+		do{
+			System.out.println("introduce la cantidad de € que desea jugar (entre 1 y 9€)");
+			dinero=teclado.nextInt();
+			System.out.println("Has introducido "+dinero+"€, puedes hacer "+dinero+" tiradas");
+		}while(dinero < 1 || dinero > 9);
+
+		contaDinero+=dinero;
+		seguir=true;
+
+		System.out.println("1 para tirar, 0 para salir");
+		tirar=teclado.nextInt();
+		if (tirar==1) {
+
+			while(seguir!=false || contaDinero!=0){
+				for(k=0;k<3;k++) {
+
+					numeroAleatorio=(int)Math.floor(Math.random()*11);
+
+					switch (numeroAleatorio) {
+					case 1:
+						salida+="$";
+					case 2:
+						salida+="$";
+					case 3:
+						salida+="$";
+					case 4:
+						salida+="@";
+					case 5:
+						salida+="@";
+					case 6:
+						salida+="@";
+					case 7:
+						salida+="#";
+					case 8:
+						salida+="%";
+					case 9:
+						salida+="<";
+					case 10:
+						salida+=">";
+					}
+				}//for tirada
+				contaDinero--;
+				System.out.println(salida);
+				salida="";
+				System.out.println("\n ¿seguir jugando?");
+				seguirJugando=teclado.nextLine();
+				if(contaDinero==0) {
+					seguir=false;
+				}else if(seguirJugando.equals("no")||seguirJugando.equals("NO")||seguirJugando.equals("nO")||seguirJugando.equals("No")){
+					seguir=false;
+				}
+			}//while tengas dinero o no
+		}else if(tirar==0) {
+			System.out.println("Te vas con tu dinero "+contaDinero+"€");
+		}
+
+	}
+
+}

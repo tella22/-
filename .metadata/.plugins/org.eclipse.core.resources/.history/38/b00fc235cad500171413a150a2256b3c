@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class Ej01Strings2 {
+
+	public static void main(String[] args) {
+
+		String palabra, letraPedida, letraActual;
+		int k;
+		
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("Introduce una palabra");
+		palabra = teclado.nextLine();
+		System.out.println("Letra que quieres reemplazar");
+		letraPedida = teclado.next();
+		
+		for (k=0; k<palabra.length(); k++) {
+			letraActual = palabra.substring(k);
+			if (letraActual.equals(letraPedida)) {
+				palabra.replace(letraActual, "");
+			}
+		}
+		System.out.println(palabra);	
+	}
+
+}

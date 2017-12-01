@@ -1,0 +1,129 @@
+import java.util.Scanner;
+public class TryTragaperras {
+
+	public static void main(String[] args) {
+
+		String[] vecCombinaciones = {"$", "@", "#", "%", ">", "<"};
+		String[] vecGanadores = {"$$$", "$@@", "$##", "@@@", "@##", "@$$", "###", "%%%", "<<<", ">>>", "$@%"};
+		int dinero, contaDinero=0, numeroAleatorio, k, tirar=0;
+		boolean seguir, ganadora;
+		String seguirJugando;
+		String salida="";
+
+		Scanner teclado = new Scanner(System.in);
+
+		do{
+			System.out.println("introduce la cantidad de € que desea jugar (entre 1 y 9€)");
+			dinero=teclado.nextInt();
+			System.out.println("Has introducido "+dinero+"€, puedes hacer "+dinero+" tiradas");
+		}while(dinero < 1 || dinero > 9);
+
+		contaDinero+=dinero;
+		seguir=true;
+
+		System.out.println("1 para tirar, 0 para salir");
+		tirar=teclado.nextInt();
+		if (tirar==1) {
+
+			while(seguir!=false || contaDinero>0){
+				salida="";
+				contaDinero--;
+				for(k=0;k<3;k++) {
+
+					numeroAleatorio=(int)Math.floor(Math.random()*10);
+
+					switch (numeroAleatorio) {
+					case 0:
+						salida+="$";
+						break;
+					case 1:
+						salida+="$";
+						break;
+					case 2:
+						salida+="$";
+						break;
+					case 3:
+						salida+="@";
+						break;
+					case 4:
+						salida+="@";
+						break;
+					case 5:
+						salida+="@";
+						break;
+					case 6:
+						salida+="#";
+						break;
+					case 7:
+						salida+="%";
+						break;
+					case 8:
+						salida+="<";
+						break;
+					case 9:
+						salida+=">";
+						break;
+					}
+				}//for tirada
+				System.out.println(salida);
+				ganadora=false;
+				for(k=0;k<vecGanadores.length ;k++) {
+					if(salida.equals(vecGanadores[k]) && ganadora==false) {
+						System.out.println("la combinacion es ganadora");
+						ganadora=true;
+						switch(k) {
+						case 0:
+							contaDinero+=50;
+							break;
+						case 1:
+							contaDinero+=25;
+							break;
+						case 2:
+							contaDinero+=15;
+							break;
+						case 3:
+							contaDinero+=10;
+							break;
+						case 4:
+							contaDinero+=5;
+							break;
+						case 5:
+							contaDinero+=3;
+							break;
+						case 6:
+							contaDinero+=1;
+							break;
+						case 7:
+							contaDinero+=1;
+							break;
+						case 8:
+							contaDinero+=1;
+							break;
+						case 9:
+							contaDinero+=1;
+							break;
+						case 10:
+							contaDinero+=1;
+							break;
+						}
+					}
+				}
+				System.out.println("ahora tienes "+contaDinero+"€");
+				System.out.println("¿seguir jugando?");
+				do{
+					seguirJugando=teclado.nextLine();
+				}while(seguirJugando.equals(""));
+				if(seguirJugando.equals("no")||seguirJugando.equals("NO")||seguirJugando.equals("nO")||seguirJugando.equals("No")) {
+					seguir=false;
+				}else if(contaDinero==0){
+					seguir=false;
+				}
+
+			}//while tengas dinero o no
+		}else if(tirar==0) {
+			System.out.println("Te vas con tu dinero "+contaDinero+"€");
+		}
+
+	}
+
+}

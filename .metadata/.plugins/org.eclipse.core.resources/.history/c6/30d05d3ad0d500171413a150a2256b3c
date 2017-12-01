@@ -1,0 +1,36 @@
+
+public class TryBingo {
+	public static void main(String[] args) {
+
+		int[][] carton = new int[3][5];
+		int j=0, k=0;
+		boolean[] numeros = new boolean[90];
+		int numeroAleatorio=0;
+
+		for(j=0; j<numeros.length; j++) {
+			numeros[j]=false;
+		}
+
+		for(j=0; j<3; j++){
+			for(k=0; k<5; k++) {
+				numeroAleatorio=(int)Math.floor(Math.random()*91);
+				do{ 
+					numeroAleatorio=(int)Math.floor(Math.random()*91);
+				}while(numeros[numeroAleatorio]==true);
+				numeros[numeroAleatorio]=true;
+				carton[j][k] = numeroAleatorio;
+			}
+		}
+
+		for(j=0; j<3; j++){
+			for(k=0; k<5; k++) {
+				System.out.printf("%3d", carton[j][k]);
+				if((k+1)%5==0){
+					System.out.println();
+
+				}
+			}
+		}
+
+	}
+}
